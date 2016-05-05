@@ -8,7 +8,7 @@ package br.edu.ifpb.pos.controle.financeiro.resources;
 import br.edu.ifpb.pos.controle.financeiro.entidades.ContaPagamento;
 import br.edu.ifpb.pos.controle.financeiro.repositorys.Repository;
 import br.edu.ifpb.pos.controle.financeiro.repositorys.RepositoryFactory;
-import br.edu.ifpb.pos.controle.financeiro.validacao.ValidadorBeans;
+import br.edu.ifpb.pos.controle.financeiro.validacao.ValidadorPOJO;
 import br.edu.ifpb.pos.controle.financeiro.validacao.grupos.Insercao;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -34,7 +34,7 @@ public class ContaPagamentoInserirResources extends ServerResource {
     public void inserir(ContaPagamento contaPagamento) {
         try {
             contaPagamento.setCodigo(null);
-            ValidadorBeans.validar(contaPagamento,Insercao.class);
+            ValidadorPOJO.validar(contaPagamento,Insercao.class);
             repository.salvar(contaPagamento);
         } catch (ValidationException ex) {
             throw new ResourceException(Status.CLIENT_ERROR_UNPROCESSABLE_ENTITY, ex.getMessage());

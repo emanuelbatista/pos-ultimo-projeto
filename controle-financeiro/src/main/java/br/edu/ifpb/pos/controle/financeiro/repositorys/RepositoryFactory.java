@@ -16,15 +16,14 @@ import br.edu.ifpb.pos.controle.financeiro.entidades.ContaRecebimento;
  */
 public class RepositoryFactory {
     
-    private static final Repository<ContaPagamento> REPOSITORY_CONTA_PAGAMENTO=new Repository<>();
-    private static final Repository<ContaRecebimento> REPOSITORY_CONTA_RECEBIMENTO=new Repository<>();
+    private static final Repository REPOSITORY=new Repository<>();
     
     public static Repository<ContaPagamento> getRepositoryContaPagamento(){
-        return REPOSITORY_CONTA_PAGAMENTO;
+        return REPOSITORY;
     }
     
     public static Repository<ContaRecebimento> getRepositoryContaRecebimento(){
-        return REPOSITORY_CONTA_RECEBIMENTO;
+        return REPOSITORY;
     }
     
 }

@@ -6,6 +6,7 @@
 package br.edu.ifpb.pos.controle.financeiro.resources;
 
 import br.edu.ifpb.pos.controle.financeiro.entidades.ContaPagamento;
+import br.edu.ifpb.pos.controle.financeiro.entidades.ContaRecebimento;
 import br.edu.ifpb.pos.controle.financeiro.repositorys.Repository;
 import br.edu.ifpb.pos.controle.financeiro.repositorys.RepositoryFactory;
 import br.edu.ifpb.pos.controle.financeiro.util.ClassesModelUtil;
@@ -24,30 +25,29 @@ import org.restlet.resource.ServerResource;
  *
  * @author Emanuel Batista da Silva Filho - https://github.com/emanuelbatista
  */
-public class ContaPagamentoResources extends ServerResource {
+public class ContaRecebimentoResources extends ServerResource{
+     private final Repository<ContaRecebimento> repository;
 
-    private final Repository<ContaPagamento> repository;
-
-    public ContaPagamentoResources() {
-        this.repository = RepositoryFactory.getRepositoryContaPagamento();
+    public ContaRecebimentoResources() {
+        this.repository = RepositoryFactory.getRepositoryContaRecebimento();
     }
 
     @Get
-    public ContaPagamento recuperar() {
+    public ContaRecebimento recuperar() {
         Long id = Long.parseLong((String) getRequest().getAttributes().get("id"));
-        return repository.buscar(id, ContaPagamento.class);
+        return repository.buscar(id, ContaRecebimento.class);
     }
 
     @Put
-    public void atualizar(ContaPagamento contaPagamento) {
+    public void atualizar(ContaRecebimento contaRecebimento) {
         try {
             Long codigo = Long.parseLong((String) getRequest().getAttributes().get("id"));
-            ContaPagamento contaPagamentoModel = repository.buscar(codigo, ContaPagamento.class);
-            if (contaPagamentoModel != null) {
-                ValidadorPOJO.validar(contaPagamento);
-                ClassesModelUtil.preencherCamposNotNull(contaPagamento, contaPagamentoModel, ContaPagamento.class);
-                contaPagamentoModel.setCodigo(codigo);
-                repository.atualizar(contaPagamentoModel);
+            ContaRecebimento contaRecebimentoModel = repository.buscar(codigo, ContaRecebimento.class);
+            if (contaRecebimentoModel != null) {
+                ValidadorPOJO.validar(contaRecebimento);
+                ClassesModelUtil.preencherCamposNotNull(contaRecebimento, contaRecebimentoModel, ContaRecebimento.class);
+                contaRecebimentoModel.setCodigo(codigo);
+                repository.atualizar(contaRecebimento);
             }
         } catch(ValidationException ex){
             throw new ResourceException(Status.CLIENT_ERROR_UNPROCESSABLE_ENTITY, ex.getMessage());
@@ -60,9 +60,9 @@ public class ContaPagamentoResources extends ServerResource {
     public void remover() {
         try {
             Long codigo = Long.parseLong((String) getRequest().getAttributes().get("id"));
-            ContaPagamento contaPagamento = repository.buscar(codigo, ContaPagamento.class);
-            if (contaPagamento != null) {
-                repository.excluir(contaPagamento);
+            ContaRecebimento contaRecebimento = repository.buscar(codigo, ContaRecebimento.class);
+            if (contaRecebimento != null) {
+                repository.excluir(contaRecebimento);
             }
         } catch (Exception ex) {
             Logger.getLogger(ContaPagamentoResources.class.getName()).log(Level.SEVERE, null, ex);

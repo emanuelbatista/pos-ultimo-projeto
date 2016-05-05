@@ -5,7 +5,7 @@
  */
 package br.edu.ifpb.pos.controle.financeiro.resources;
 
-import br.edu.ifpb.pos.controle.financeiro.entidades.ContaPagamento;
+import br.edu.ifpb.pos.controle.financeiro.entidades.ContaRecebimento;
 import br.edu.ifpb.pos.controle.financeiro.repositorys.Repository;
 import br.edu.ifpb.pos.controle.financeiro.repositorys.RepositoryFactory;
 import java.util.List;
@@ -16,18 +16,17 @@ import org.restlet.resource.ServerResource;
  *
  * @author Emanuel Batista da Silva Filho - https://github.com/emanuelbatista
  */
-public class ContasPagamentoResources extends ServerResource {
+public class ContasRecebimentoResources extends ServerResource {
 
-    private final Repository<ContaPagamento> repository;
+    private final Repository<ContaRecebimento> repository;
 
-    public ContasPagamentoResources() {
-        this.repository = RepositoryFactory.getRepositoryContaPagamento();
+    public ContasRecebimentoResources() {
+        this.repository = RepositoryFactory.getRepositoryContaRecebimento();
     }
 
     @Get
-    public List<ContaPagamento> list(){
-        return repository.consultaLista("contapagamento.list", null);
+    public List<ContaRecebimento> list() {
+        return repository.consultaLista("contarecebimento.list", null);
     }
 
-   
 }

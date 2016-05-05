@@ -20,8 +20,8 @@ import javax.validation.constraints.NotNull;
  * @author Emanuel Batista da Silva Filho - https://github.com/emanuelbatista
  */
 @Entity
-@NamedQueries({@NamedQuery(name = "list",query = "SELECT cp FROM ContaPagamento cp")
-              , @NamedQuery(name= "conta.status", query = "SELECT new br.edu.ifpb.pos.controle.financeiro.entidades.ContaStatus(cp.codigo,cp.statusConta) FROM ContaPagamento cp WHERE cp.codigo=:codigo")})
+@NamedQueries({@NamedQuery(name = "contapagamento.list",query = "SELECT cp FROM ContaPagamento cp")
+              , @NamedQuery(name= "contapagamento.status", query = "SELECT new br.edu.ifpb.pos.controle.financeiro.entidades.ContaStatus(cp.codigo,cp.statusConta) FROM ContaPagamento cp WHERE cp.codigo=:codigo")})
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class ContaPagamento extends Conta{

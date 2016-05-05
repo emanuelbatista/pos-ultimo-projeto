@@ -15,7 +15,7 @@ import javax.validation.Validator;
  *
  * @author Emanuel Batista da Silva Filho - https://github.com/emanuelbatista
  */
-public class ValidadorBeans {
+public class ValidadorPOJO {
 
     private static Validator validator = Validation.buildDefaultValidatorFactory().getValidator();
 

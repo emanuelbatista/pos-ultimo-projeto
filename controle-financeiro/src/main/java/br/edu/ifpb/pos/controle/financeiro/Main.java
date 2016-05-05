@@ -8,7 +8,11 @@ package br.edu.ifpb.pos.controle.financeiro;
 import br.edu.ifpb.pos.controle.financeiro.resources.ContaPagamentoInserirResources;
 import br.edu.ifpb.pos.controle.financeiro.resources.ContaPagamentoResources;
 import br.edu.ifpb.pos.controle.financeiro.resources.ContaPagamentoStatusResources;
+import br.edu.ifpb.pos.controle.financeiro.resources.ContaRecebimentoInserirResources;
+import br.edu.ifpb.pos.controle.financeiro.resources.ContaRecebimentoResources;
+import br.edu.ifpb.pos.controle.financeiro.resources.ContaRecebimentoStatusResources;
 import br.edu.ifpb.pos.controle.financeiro.resources.ContasPagamentoResources;
+import br.edu.ifpb.pos.controle.financeiro.resources.ContasRecebimentoResources;
 import org.restlet.Application;
 import org.restlet.Component;
 import org.restlet.data.Protocol;
@@ -32,10 +36,10 @@ public class Main {
         router.attach("/conta-pagamento/{id}/status", ContaPagamentoStatusResources.class);
         //
         //
-//        router.attach("/contas-recebimento", targetClass)
-//        router.attach("/conta-recebimento", targetClass)
-//        router.attach("/conta-recebimento/{id}", targetClass)
-//        router.attach("/conta-recebimento/{id}/status", targetClass)
+        router.attach("/contas-recebimento", ContasRecebimentoResources.class);
+        router.attach("/conta-recebimento", ContaRecebimentoInserirResources.class);
+        router.attach("/conta-recebimento/{id}", ContaRecebimentoResources.class);
+        router.attach("/conta-recebimento/{id}/status", ContaRecebimentoStatusResources.class);
         
         Application application = new Application();
         application.setInboundRoot(router);

@@ -7,6 +7,7 @@ package br.edu.ifpb.pos.controle.financeiro.entidades;
 
 import br.edu.ifpb.pos.controle.financeiro.validacao.grupos.Insercao;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Column;
@@ -53,6 +54,7 @@ public abstract class Conta implements Serializable{
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     @NotNull(groups = Insercao.class)
+    @JsonProperty(value = "status")
     private StatusConta statusConta;
 
     public Long getCodigo() {
