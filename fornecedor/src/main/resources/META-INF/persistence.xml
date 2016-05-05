@@ -11,4 +11,15 @@
       <property name="javax.persistence.schema-generation.database.action" value="create"/>
     </properties>
   </persistence-unit>
+  <persistence-unit name="br.edu.ifpb.pos.fornecedor.remoto" transaction-type="RESOURCE_LOCAL">
+    <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+    <class>br.edu.ifpb.pos.fornecedor.entidade.Fornecedor</class>
+    <properties>
+      <property name="javax.persistence.jdbc.url" value="postgres://kpicjljdfgkqfd:33qYcd5Ydtd9d_6b2kDyUHutM0@ec2-54-243-243-136.compute-1.amazonaws.com:5432/dfgkfrgufjsrka"/>
+      <property name="javax.persistence.jdbc.user" value="postgres"/>
+      <property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver"/>
+      <property name="javax.persistence.jdbc.password" value="123456"/>
+      <property name="javax.persistence.schema-generation.database.action" value="create"/>
+    </properties>
+  </persistence-unit>
 </persistence>

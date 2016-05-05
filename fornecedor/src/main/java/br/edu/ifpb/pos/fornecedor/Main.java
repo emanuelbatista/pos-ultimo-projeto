@@ -18,6 +18,8 @@ public class Main {
         String port=System.getProperty("server.port");
         if(port!=null){
           System.out.println("Porta: "+port);
+        }else{
+            port="8080";
         }
         Endpoint.publish("http://localhost:"+port+"/fornecedor", new FornecedorServiceImpl());
     }

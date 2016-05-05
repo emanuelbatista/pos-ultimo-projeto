@@ -29,21 +29,25 @@
             <artifactId>postgresql</artifactId>
             <version>9.4-1205-jdbc41</version>
         </dependency>
+        <dependency>
+            <groupId>org.eclipse.persistence</groupId>
+            <artifactId>org.eclipse.persistence.jpa.modelgen.processor</artifactId>
+            <version>2.5.2</version>
+            <scope>provided</scope>
+        </dependency>
     </dependencies>
     
     <build>
         <plugins>
-             <plugin>
-                <artifactId>maven-assembly-plugin</artifactId>
+            <plugin>
+                <groupId>com.heroku.sdk</groupId>
+                <artifactId>heroku-maven-plugin</artifactId>
+                <version>1.0.0</version>
                 <configuration>
-                    <archive>
-                        <manifest>
-                            <mainClass>br.edu.ifpb.pos.fornecedor.Main</mainClass>
-                        </manifest>
-                    </archive>
-                    <descriptorRefs>
-                        <descriptorRef>jar-with-dependencies</descriptorRef>
-                    </descriptorRefs>
+                    <appName>pos-webservice</appName>
+                    <processTypes>
+                        <web>java $JAVA_OPTS -Dserver.port=$PORT -cp target/classes:target/dependency/* br.edu.ifpb.pos.fornecedor.Main</web>
+                    </processTypes>
                 </configuration>
             </plugin>
         </plugins>
