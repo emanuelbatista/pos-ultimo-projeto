@@ -14,6 +14,11 @@ import javax.xml.ws.Endpoint;
  */
 public class Main {
     public static void main(String[] args) throws Exception {
-        Endpoint.publish("http://localhost:8000/fornecedor", new FornecedorServiceImpl());
+        System.out.println("Iniciando Servidor");
+        String port=System.getProperty("server.port");
+        if(port!=null){
+          System.out.println("Porta: "+port);
+        }
+        Endpoint.publish("http://localhost:"+port+"/fornecedor", new FornecedorServiceImpl());
     }
 }
