@@ -17,7 +17,7 @@ import javax.jws.soap.SOAPBinding;
  *
  * @author Emanuel Batista da Silva Filho - https://github.com/emanuelbatista
  */
-@WebService(name = "FornecedorService", serviceName = "FornecedorService")
+@WebService(name = "FornecedorService",serviceName = "FornecedorService",targetNamespace = "http://service.fornecedor.pos.ifpb.edu.br/")
 @SOAPBinding(style = SOAPBinding.Style.DOCUMENT)
 public class FornecedorServiceImpl implements FornecedorService {
 

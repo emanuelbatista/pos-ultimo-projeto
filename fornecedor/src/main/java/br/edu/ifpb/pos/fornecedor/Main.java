@@ -21,6 +21,6 @@ public class Main {
         }else{
             port="8080";
         }
-        Endpoint.publish("http://localhost:"+port+"/fornecedor", new FornecedorServiceImpl());
+        Endpoint.publish("http://0.0.0.0:"+port+"/fornecedor", new FornecedorServiceImpl());
     }
 }
