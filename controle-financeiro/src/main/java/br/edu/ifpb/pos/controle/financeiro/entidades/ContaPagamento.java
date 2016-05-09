@@ -21,7 +21,10 @@ import javax.validation.constraints.NotNull;
  */
 @Entity
 @NamedQueries({@NamedQuery(name = "contapagamento.list",query = "SELECT cp FROM ContaPagamento cp")
-              , @NamedQuery(name= "contapagamento.status", query = "SELECT new br.edu.ifpb.pos.controle.financeiro.entidades.ContaStatus(cp.codigo,cp.statusConta) FROM ContaPagamento cp WHERE cp.codigo=:codigo")})
+        , @NamedQuery(name= "contapagamento.status", query = "SELECT new br.edu.ifpb.pos.controle.financeiro.entidades.ContaStatus(cp.codigo,cp.statusConta) FROM ContaPagamento cp WHERE cp.codigo=:codigo")
+        , @NamedQuery(name = "contapagamento.fornecedor",query = "SELECT cp FROM ContaPagamento cp WHERE cp.fornecimento.idFornecedor=:idFornecedor")
+        , @NamedQuery(name = "contapagamento.data",query = "SELECT cp FROM ContaPagamento cp WHERE cp.dataVencimento=:data")
+})
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class ContaPagamento extends Conta{

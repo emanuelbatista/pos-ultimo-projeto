@@ -20,7 +20,8 @@ import javax.validation.constraints.NotNull;
 @NamedQueries({
     @NamedQuery(name = "contarecebimento.list",query = "SELECT cr FROM ContaRecebimento cr"),
     @NamedQuery(name = "contarecebimento.status",
-            query = "SELECT new br.edu.ifpb.pos.controle.financeiro.entidades.ContaStatus(cr.codigo,cr.statusConta) FROM ContaRecebimento cr WHERE cr.codigo=:codigo")
+            query = "SELECT new br.edu.ifpb.pos.controle.financeiro.entidades.ContaStatus(cr.codigo,cr.statusConta) FROM ContaRecebimento cr WHERE cr.codigo=:codigo"),
+    @NamedQuery(name = "contarecebimento.data",query = "SELECT cr FROM ContaRecebimento cr WHERE cr.dataVencimento=:data")
 })
 public class ContaRecebimento extends Conta{
     

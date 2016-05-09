@@ -5,7 +5,6 @@
  */
 package br.edu.ifpb.pos.controle.financeiro.resources;
 
-import br.edu.ifpb.pos.controle.financeiro.entidades.ContaPagamento;
 import br.edu.ifpb.pos.controle.financeiro.entidades.ContaRecebimento;
 import br.edu.ifpb.pos.controle.financeiro.repositorys.Repository;
 import br.edu.ifpb.pos.controle.financeiro.repositorys.RepositoryFactory;

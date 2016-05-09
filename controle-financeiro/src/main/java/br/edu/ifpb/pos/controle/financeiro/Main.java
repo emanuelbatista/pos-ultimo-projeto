@@ -5,9 +5,12 @@
  */
 package br.edu.ifpb.pos.controle.financeiro;
 
+import br.edu.ifpb.pos.controle.financeiro.resources.ContaPagamentoData;
+import br.edu.ifpb.pos.controle.financeiro.resources.ContaPagamentoFornecedorResource;
 import br.edu.ifpb.pos.controle.financeiro.resources.ContaPagamentoInserirResources;
 import br.edu.ifpb.pos.controle.financeiro.resources.ContaPagamentoResources;
 import br.edu.ifpb.pos.controle.financeiro.resources.ContaPagamentoStatusResources;
+import br.edu.ifpb.pos.controle.financeiro.resources.ContaRecebimentoData;
 import br.edu.ifpb.pos.controle.financeiro.resources.ContaRecebimentoInserirResources;
 import br.edu.ifpb.pos.controle.financeiro.resources.ContaRecebimentoResources;
 import br.edu.ifpb.pos.controle.financeiro.resources.ContaRecebimentoStatusResources;
@@ -33,13 +36,16 @@ public class Main {
         router.attach("/contas-pagamento", ContasPagamentoResources.class);
         router.attach("/conta-pagamento", ContaPagamentoInserirResources.class);
         router.attach("/conta-pagamento/{id}", ContaPagamentoResources.class);
+        router.attach("/fornecedor/{idFornecedor}/contas-pagamento", ContaPagamentoFornecedorResource.class);
         router.attach("/conta-pagamento/{id}/status", ContaPagamentoStatusResources.class);
+        router.attach("/contas-pagamento/data/{data}", ContaPagamentoData.class);
         //
         //
         router.attach("/contas-recebimento", ContasRecebimentoResources.class);
         router.attach("/conta-recebimento", ContaRecebimentoInserirResources.class);
         router.attach("/conta-recebimento/{id}", ContaRecebimentoResources.class);
         router.attach("/conta-recebimento/{id}/status", ContaRecebimentoStatusResources.class);
+        router.attach("/contas-recebimento/data/{data}", ContaRecebimentoData.class);
         
         Application application = new Application();
         application.setInboundRoot(router);
