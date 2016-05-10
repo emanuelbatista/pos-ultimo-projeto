@@ -26,9 +26,15 @@ import org.restlet.routing.Router;
  * @author Emanuel Batista da Silva Filho - https://github.com/emanuelbatista
  */
 public class Main {
+
     public static void main(String[] args) throws Exception {
         Component component = new Component();
-        component.getServers().add(Protocol.HTTP, 8080);
+        String port = System.getProperty("server.port");
+        if (port == null) {
+            component.getServers().add(Protocol.HTTP, 8080);
+        } else {
+            component.getServers().add(Protocol.HTTP, Integer.parseInt(port));
+        }
         //
         Router router = new Router();
         //
@@ -46,7 +52,7 @@ public class Main {
         router.attach("/conta-recebimento/{id}", ContaRecebimentoResources.class);
         router.attach("/conta-recebimento/{id}/status", ContaRecebimentoStatusResources.class);
         router.attach("/contas-recebimento/data/{data}", ContaRecebimentoData.class);
-        
+        //
         Application application = new Application();
         application.setInboundRoot(router);
         //

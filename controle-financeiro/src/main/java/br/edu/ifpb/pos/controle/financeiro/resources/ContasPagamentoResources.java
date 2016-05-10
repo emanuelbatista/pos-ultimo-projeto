@@ -24,7 +24,7 @@ public class ContasPagamentoResources extends ServerResource {
         this.repository = RepositoryFactory.getRepositoryContaPagamento();
     }
 
-    @Get
+    @Get("json")
     public List<ContaPagamento> list(){
         return repository.consultaLista("contapagamento.list", null);
     }

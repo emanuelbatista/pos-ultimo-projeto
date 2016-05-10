@@ -31,7 +31,7 @@ public class ContaRecebimentoResources extends ServerResource{
         this.repository = RepositoryFactory.getRepositoryContaRecebimento();
     }
 
-    @Get
+    @Get("json")
     public ContaRecebimento recuperar() {
         Long id = Long.parseLong((String) getRequest().getAttributes().get("id"));
         return repository.buscar(id, ContaRecebimento.class);

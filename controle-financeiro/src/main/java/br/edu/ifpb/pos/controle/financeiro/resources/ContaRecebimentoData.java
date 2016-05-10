@@ -31,7 +31,7 @@ public class ContaRecebimentoData extends ServerResource{
         this.repository = RepositoryFactory.getRepositoryContaRecebimento();
     }
     
-    @Get
+    @Get("josn")
     public List<ContaRecebimento> getContaRecebimentoData(){
         try {
             String dataTexto=(String)getRequest().getAttributes().get("data");

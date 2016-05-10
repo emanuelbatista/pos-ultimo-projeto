@@ -5,7 +5,6 @@
  */
 package br.edu.ifpb.pos.controle.financeiro.resources;
 
-import br.edu.ifpb.pos.controle.financeiro.entidades.ContaPagamento;
 import br.edu.ifpb.pos.controle.financeiro.entidades.ContaRecebimento;
 import br.edu.ifpb.pos.controle.financeiro.entidades.ContaStatus;
 import br.edu.ifpb.pos.controle.financeiro.repositorys.Repository;
@@ -27,7 +26,7 @@ public class ContaRecebimentoStatusResources extends ServerResource {
         this.repository = RepositoryFactory.getRepositoryContaRecebimento();
     }
 
-    @Get
+    @Get("json")
     public ContaStatus buscarContaStatus() {
         Long codigo = Long.parseLong((String) getRequest().getAttributes().get("id"));
         Map<String, Object> map = new HashMap<>();

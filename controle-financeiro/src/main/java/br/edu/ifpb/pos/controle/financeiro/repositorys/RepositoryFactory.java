@@ -16,7 +16,16 @@ import br.edu.ifpb.pos.controle.financeiro.entidades.ContaRecebimento;
  */
 public class RepositoryFactory {
     
-    private static final Repository REPOSITORY=new Repository<>();
+    private static final Repository REPOSITORY=createRepository();
+            
+    public static Repository createRepository(){
+         String port = System.getProperty("server.port");
+        if (port == null) {
+            return new Repository<>("br.edu.ifpb.pos");
+
+        }
+        return new Repository<>("br.edu.ifpb.pos.remoto");
+    }        
     
     public static Repository<ContaPagamento> getRepositoryContaPagamento(){
         return REPOSITORY;

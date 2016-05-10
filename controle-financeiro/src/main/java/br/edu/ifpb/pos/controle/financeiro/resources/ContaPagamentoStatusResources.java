@@ -26,7 +26,7 @@ public class ContaPagamentoStatusResources extends ServerResource {
         this.repository = RepositoryFactory.getRepositoryContaPagamento();
     }
 
-    @Get
+    @Get("json")
     public ContaStatus buscarContaStatus() {
         Long codigo = Long.parseLong((String) getRequest().getAttributes().get("id"));
         Map<String, Object> map = new HashMap<>();

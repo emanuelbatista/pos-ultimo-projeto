@@ -31,7 +31,7 @@ public class ContaPagamentoData extends ServerResource{
         this.repository=RepositoryFactory.getRepositoryContaPagamento();
     }
     
-    @Get
+    @Get("json")
     public List<ContaPagamento> getContaPagamento(){
          try {
             String dataTexto=(String)getRequest().getAttributes().get("data");

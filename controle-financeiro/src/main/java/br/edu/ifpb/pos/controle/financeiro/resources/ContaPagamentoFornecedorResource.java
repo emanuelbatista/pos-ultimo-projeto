@@ -27,9 +27,9 @@ public class ContaPagamentoFornecedorResource extends ServerResource {
         this.repository = RepositoryFactory.getRepositoryContaPagamento();
     }
 
-    @Get
+    @Get("json")
     public List<ContaPagamento> getContaPagamento() {
-        String idFornecedor= (String)getRequest().getAttributes().get("idFornecedor");
+        Long idFornecedor= Long.parseLong((String)getRequest().getAttributes().get("idFornecedor"));
         Map<String,Object> param=new HashMap<>();
         param.put("idFornecedor", idFornecedor);
         return repository.consultaLista("contapagamento.fornecedor", param);

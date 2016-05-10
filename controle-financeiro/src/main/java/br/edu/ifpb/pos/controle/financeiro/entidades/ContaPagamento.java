@@ -8,11 +8,11 @@ package br.edu.ifpb.pos.controle.financeiro.entidades;
 import br.edu.ifpb.pos.controle.financeiro.validacao.grupos.Insercao;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
-import javax.persistence.Embedded;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 
 /**
@@ -22,25 +22,40 @@ import javax.validation.constraints.NotNull;
 @Entity
 @NamedQueries({@NamedQuery(name = "contapagamento.list",query = "SELECT cp FROM ContaPagamento cp")
         , @NamedQuery(name= "contapagamento.status", query = "SELECT new br.edu.ifpb.pos.controle.financeiro.entidades.ContaStatus(cp.codigo,cp.statusConta) FROM ContaPagamento cp WHERE cp.codigo=:codigo")
-        , @NamedQuery(name = "contapagamento.fornecedor",query = "SELECT cp FROM ContaPagamento cp WHERE cp.fornecimento.idFornecedor=:idFornecedor")
+        , @NamedQuery(name = "contapagamento.fornecedor",query = "SELECT cp FROM ContaPagamento cp WHERE cp.idFornecedor=:idFornecedor")
         , @NamedQuery(name = "contapagamento.data",query = "SELECT cp FROM ContaPagamento cp WHERE cp.dataVencimento=:data")
 })
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class ContaPagamento extends Conta{
     
-    @Embedded
-    @Valid
+    @Column(nullable = false)
     @NotNull(groups = Insercao.class)
-    private Fornecimento fornecimento;
+    @JsonProperty(value = "id_fornecedor")
+    private Long idFornecedor;
+    
+    @Column(nullable = false)
+    @NotNull(groups = Insercao.class)
+    @JsonProperty(value = "id_peca")
+    private Long idPeca;
 
-    public Fornecimento getFornecimento() {
-        return fornecimento;
+    public Long getIdFornecedor() {
+        return idFornecedor;
     }
 
-    public void setFornecimento(Fornecimento fornecimento) {
-        this.fornecimento = fornecimento;
+    public void setIdFornecedor(Long idFornecedor) {
+        this.idFornecedor = idFornecedor;
     }
+
+    public Long getIdPeca() {
+        return idPeca;
+    }
+
+    public void setIdPeca(Long idPeca) {
+        this.idPeca = idPeca;
+    }
+    
+    
     
     
     
