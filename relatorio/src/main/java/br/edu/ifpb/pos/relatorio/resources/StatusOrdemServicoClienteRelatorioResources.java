@@ -6,8 +6,8 @@
 package br.edu.ifpb.pos.relatorio.resources;
 
 import br.edu.ifpb.pos.relatorio.entidades.Cliente;
-import br.edu.ifpb.pos.relatorio.entidades.OrdemServico;
-import br.edu.ifpb.pos.relatorio.entidades.OrdemServicoClienteRelatorio;
+import br.edu.ifpb.pos.relatorio.entidades.StatusOrdemServico;
+import br.edu.ifpb.pos.relatorio.entidades.StatusOrdemServicoClienteRelatorio;
 import br.edu.ifpb.pos.relatorio.service.RelatorioService;
 import java.io.IOException;
 import java.util.List;
@@ -20,32 +20,33 @@ import org.restlet.resource.ServerResource;
  *
  * @author Emanuel Batista da Silva Filho - https://github.com/emanuelbatista
  */
-public class OrdemServicoClienteRelatorioResources extends ServerResource{
+public class StatusOrdemServicoClienteRelatorioResources extends ServerResource{
     
-    private RelatorioService relatorioService;
+    private final RelatorioService relatorioService;
 
-    public OrdemServicoClienteRelatorioResources() {
+    public StatusOrdemServicoClienteRelatorioResources() {
         this.relatorioService=new RelatorioService();
     }
     
+    
+    
     @Get("json")
-    public OrdemServicoClienteRelatorio getOrdemServicoClienteRelatorio(){
+    public StatusOrdemServicoClienteRelatorio getStatusOrdemServicoClienteRelatorio(){
         try {
             Long idCliente=Long.parseLong((String)getRequest().getAttributes().get("idCliente"));
-            OrdemServicoClienteRelatorio relatorio=new OrdemServicoClienteRelatorio();
+            StatusOrdemServicoClienteRelatorio relatorio=new StatusOrdemServicoClienteRelatorio();
             Cliente cliente=relatorioService.getCliente(idCliente);
             if(cliente==null){
                 return null;
             }
-            List<OrdemServico> ordensServico=relatorioService.getOrensServicosCliente(idCliente);
+            List<StatusOrdemServico> statusOrdemServicos = relatorioService.getStatusOrdensServicoCliente(idCliente);
             relatorio.setCliente(cliente);
-            relatorio.setOrdensServico(ordensServico);
+            relatorio.setStatusOrdensServico(statusOrdemServicos);
             return relatorio;
         } catch (IOException ex) {
             throw new ResourceException(Status.SERVER_ERROR_INTERNAL,ex);
-        } 
+        }
     }
-    
     
     
 }

@@ -6,33 +6,33 @@
 package br.edu.ifpb.pos.relatorio.entidades;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import java.util.List;
 
 /**
  *
  * @author Emanuel Batista da Silva Filho - https://github.com/emanuelbatista
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class OrdemServicoClienteRelatorio {
+public class StatusOrdemServico {
     
-    private Cliente cliente;
-    private List<OrdemServico> ordensServico;
+    private Long numero;
+    private String status;
 
-    public Cliente getCliente() {
-        return cliente;
+    public String getStatus() {
+        return status;
     }
 
-    public void setCliente(Cliente cliente) {
-        this.cliente = cliente;
+    public void setStatus(String status) {
+        this.status = status;
     }
 
-    public List<OrdemServico> getOrdensServico() {
-        return ordensServico;
+    public Long getNumero() {
+        return numero;
     }
 
-    public void setOrdensServico(List<OrdemServico> ordensServico) {
-        this.ordensServico = ordensServico;
+    public void setNumero(Long numero) {
+        this.numero = numero;
     }
+    
     
     
     

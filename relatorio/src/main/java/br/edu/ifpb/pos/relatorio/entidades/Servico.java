@@ -5,10 +5,13 @@
  */
 package br.edu.ifpb.pos.relatorio.entidades;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 /**
  *
  * @author Emanuel Batista da Silva Filho - https://github.com/emanuelbatista
  */
+@JsonIgnoreProperties(ignoreUnknown = true,value = {"status","pecas"})
 public class Servico {
     
     private Long id;
