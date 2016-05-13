@@ -5,6 +5,7 @@
  */
 package br.edu.ifpb.pos.relatorio.entidades;
 
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -15,6 +16,12 @@ public class StatusOrdemServicoClienteRelatorio {
     
     private Cliente cliente;
     private List<StatusOrdemServico> statusOrdensServico;
+
+    public StatusOrdemServicoClienteRelatorio() {
+        statusOrdensServico=Collections.EMPTY_LIST;
+    }
+    
+    
 
     public Cliente getCliente() {
         return cliente;

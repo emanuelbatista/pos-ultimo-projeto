@@ -6,6 +6,7 @@
 package br.edu.ifpb.pos.relatorio.entidades;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -18,6 +19,10 @@ public class OrdemServicoClienteRelatorio {
     private Cliente cliente;
     private List<OrdemServico> ordensServico;
 
+    public OrdemServicoClienteRelatorio() {
+        ordensServico=Collections.EMPTY_LIST;
+    }
+    
     public Cliente getCliente() {
         return cliente;
     }

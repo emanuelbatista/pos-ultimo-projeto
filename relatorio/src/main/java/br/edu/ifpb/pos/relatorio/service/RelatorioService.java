@@ -9,7 +9,11 @@ import br.edu.ifpb.pos.relatorio.entidades.Cliente;
 import br.edu.ifpb.pos.relatorio.entidades.ContaPagamento;
 import br.edu.ifpb.pos.relatorio.entidades.ContaRecebimento;
 import br.edu.ifpb.pos.relatorio.entidades.Fornecedor;
+import br.edu.ifpb.pos.relatorio.entidades.ListaDePecas;
+import br.edu.ifpb.pos.relatorio.entidades.Orcamento;
 import br.edu.ifpb.pos.relatorio.entidades.OrdemServico;
+import br.edu.ifpb.pos.relatorio.entidades.Peca;
+import br.edu.ifpb.pos.relatorio.entidades.QtdPecas;
 import br.edu.ifpb.pos.relatorio.entidades.StatusOrdemServico;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.IOException;
@@ -19,9 +23,12 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.rmi.RemoteException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.xml.namespace.QName;
 import javax.xml.ws.Service;
 import org.restlet.representation.Representation;
@@ -84,7 +91,6 @@ public class RelatorioService {
 
     public VeiculoOrdemServicoTO getRelatorioVeiculoOrdemServico(long idVeiculo) {
         ClientResource clientResource = new ClientResource("https://oficina-os-orca.herokuapp.com/os");
-//        OrdemServico[] result = clientResource.get(OrdemServico[].class);
         try {
             List<OrdemServico> result = JsonUtils.converterJsonEmListaOrdemServico(
                     clientResource.get().getText());
@@ -98,6 +104,48 @@ public class RelatorioService {
             return to;
         } catch (Exception e) {
             e.printStackTrace();
+        }
+        return null;
+    }
+
+    public ContaPagamento[] getRelatorioContaPagamentoPorData (Date data){
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+        String dataTexto = dateFormat.format(data);
+        ClientResource clientResource
+                = new ClientResource("https://controle-financeiro-automovel.herokuapp.com/contas-pagamento/data/{data}");
+        clientResource.getRequest().getAttributes().put("data", dataTexto);
+        ContaPagamento[] contaRecebimentos = clientResource.get(ContaPagamento[].class);
+        return contaRecebimentos;
+    }
+    
+    public QtdPecas getRelatorioPecaPorNome(String nome) {
+        try {
+            URL wsdl = new URL("http://servico-pecas.herokuapp.com/pecas?wsdl");
+            QName qname = new QName("http://services.basico.pecas.pos.ifpb.edu/", "PecaServiceImplService");
+            Service ws = Service.create(wsdl, qname);
+            PecaService pecaService = ws.getPort(PecaService.class);
+            ListaDePecas lista = pecaService.listPecas();
+            QtdPecas result = new QtdPecas();
+            result.setNome(nome);
+            for (Peca peca : lista.getLista()){
+                if (peca.getNome().toLowerCase().contains(nome.toLowerCase())){
+                    result.setQtd(result.getQtd()+ 1);
+                }
+            }
+            return result;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+    
+    public List<Orcamento> getRelatorioOrcamentoPorVeiculoo (long veiculo){
+        ClientResource clientResource
+                = new ClientResource("https://oficina-os-orca.herokuapp.com/orcamento/veiculo/"+veiculo);
+        try {
+            return JsonUtils.converterJsonEmListaOrcamento(clientResource.get().getText());
+        } catch (IOException ex) {
+            ex.printStackTrace();
         }
         return null;
     }

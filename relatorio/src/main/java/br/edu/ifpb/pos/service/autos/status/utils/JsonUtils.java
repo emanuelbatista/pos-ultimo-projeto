@@ -1,5 +1,6 @@
 package br.edu.ifpb.pos.service.autos.status.utils;
 
+import br.edu.ifpb.pos.relatorio.entidades.Orcamento;
 import br.edu.ifpb.pos.relatorio.entidades.OrdemServico;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -22,6 +23,12 @@ public class JsonUtils {
     public static List<OrdemServico> converterJsonEmListaOrdemServico(String json){
         Type listType = new TypeToken<List<OrdemServico>>() {}.getType();        
         List<OrdemServico> result = (List<OrdemServico>) new Gson().fromJson(json, listType);
+        return result;
+    }
+    
+    public static List<Orcamento> converterJsonEmListaOrcamento(String json){
+        Type listType = new TypeToken<List<Orcamento>>() {}.getType();        
+        List<Orcamento> result = (List<Orcamento>) new Gson().fromJson(json, listType);
         return result;
     }
     

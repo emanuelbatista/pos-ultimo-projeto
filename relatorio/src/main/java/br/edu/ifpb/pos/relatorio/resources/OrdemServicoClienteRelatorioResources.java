@@ -35,7 +35,7 @@ public class OrdemServicoClienteRelatorioResources extends ServerResource{
             OrdemServicoClienteRelatorio relatorio=new OrdemServicoClienteRelatorio();
             Cliente cliente=relatorioService.getCliente(idCliente);
             if(cliente==null){
-                return null;
+                return relatorio;
             }
             List<OrdemServico> ordensServico=relatorioService.getOrensServicosCliente(idCliente);
             relatorio.setCliente(cliente);

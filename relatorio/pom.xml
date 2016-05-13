@@ -30,6 +30,22 @@
         </dependency>
     </dependencies>
     
+     <build>
+        <plugins>
+            <plugin>
+                <groupId>com.heroku.sdk</groupId>
+                <artifactId>heroku-maven-plugin</artifactId>
+                <version>1.0.0</version>
+                <configuration>
+                    <appName>pos-relatorio</appName>
+                    <processTypes>
+                        <web>java $JAVA_OPTS -Dserver.port=$PORT -cp target/classes:target/dependency/* br.edu.ifpb.pos.relatorio.Main</web>
+                    </processTypes>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+    
     <repositories>
         <repository>
             <id>maven-restlet</id>
